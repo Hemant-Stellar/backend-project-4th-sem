@@ -1,17 +1,5 @@
 [
   {
-    "name": "John Doe",
-    "email": "john@example.com",
-    "technicalSkills": "Node.js, JavaScript",
-    "score": 90
-  },
-  {
-    "name": "Alice Smith",
-    "email": "alice@example.com",
-    "technicalSkills": "Python, Django",
-    "score": 85
-  },
-  {
     "name": "Bob Johnson",
     "email": "bob@example.com",
     "technicalSkills": "Java, Spring",
@@ -24,9 +12,15 @@
     "score": 88
   },
   {
+    "name": "Sandarbh Bajpai",
+    "email": "bajpaisandarbh@gmail.com",
+    "technicalSkills": "HTML CSS Javascript Node js Python C/C++ Java Object Oriented Programming Competitive Programming SQL DBMS Operating Systems Teamwork Team Leadership Multitasking Fast Learner Critical thinking and problem solving Attention to detail",
+    "score": 50
+  },
+  {
     "name": "Hemant Singh",
     "email": "hemantsingh09103@gmail.com",
-    "technicalSkills": "JavaScript, Python, C, C++, Java, Windows XP/Vista/7/8/10/11, Linux, Backend (Node.js, Express.js, Docker, Cloud Services (Azure AI essentials), Deployment, Frontend (React), Database (PostgreSQL), Git (GitHub), GitHub Project Management",
-    "score": 90
+    "technicalSkills": "JavaScript, Python, C, C++, java,Windows XP/Vista/7/8/10/11,Linux,Backend (node.js, express.js, building API), Docker, Cloud Services (Azure AI essentials), Deployment,Frontend (React), Database (PostgreSql), Git (GitHub), GitHub-Project-Management",
+    "score": 75
   }
 ]

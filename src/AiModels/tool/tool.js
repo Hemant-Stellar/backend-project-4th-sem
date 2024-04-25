@@ -21,14 +21,7 @@ const tool = [
     type: "function",
     function: {
       name: "write_json",
-      description: `Write Json data for user to a file in format {
-        {
-          "name": "John Doe",
-          "email": "john@example.com",
-          "technicalSkills": "Node.js, JavaScript",
-          "score": "90"
-        }
-      }`,
+      description: `Writes Json data for user to a file `,
       parameters: {
         type: "object",
         properties: {
@@ -46,7 +39,7 @@ const tool = [
           },
           score:{
             type:"number",
-            description:"score of the user's profile or cv"
+            description:"score of the user on basis of cv .eg. A person having skills Node.js, JavaScript has been scored '50'."
           }
         },
         required: ["name","email","score"],
