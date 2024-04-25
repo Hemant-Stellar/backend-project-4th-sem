@@ -32,12 +32,24 @@ const tool = [
       parameters: {
         type: "object",
         properties: {
-          object: {
-            type: "object",
-            description: "The object to write to the JSON file",
+          name: {
+            type:"string",
+            description: "name of the user",
           },
+          email:{
+            type:"string",
+            description:"email of the user",
+          },
+          technicalSkills:{
+            type:"string",
+            description:"technicalskills of user"
+          },
+          score:{
+            type:"number",
+            description:"score of the user's profile or cv"
+          }
         },
-        required: ["object"],
+        required: ["name","email","score"],
       },
     },
   },

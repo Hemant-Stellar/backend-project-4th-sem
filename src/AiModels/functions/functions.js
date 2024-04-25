@@ -40,14 +40,18 @@ export const getCurrentWeather = (functionArgs)=> {
         // Write the updated JSON data back to the file
         await writeFile(filePath, updatedJsonData, 'utf8');
         console.log("Object added successfully to", filePath);
+        return `data added successfully `;
     } catch (error) {
         console.error("Error:", error);
+        return `error while adding data`;
     }
 }
 
 export const getRankByEmailId = async (functionArgs) =>{
+  console.log("getRankByEmailId called")
   if(functionArgs.email){
   const emailId = functionArgs.email;
+  
   
   try {
       // Read the existing JSON data from the file
@@ -58,13 +62,13 @@ export const getRankByEmailId = async (functionArgs) =>{
       jsonData.sort((a, b) => b.score - a.score);
 
       // Find the index of the specified email ID
-      const rank = jsonData.findIndex(item => item.email === emailId) + 1;
+      const rank = await jsonData.findIndex(item => item.email === emailId) + 1;
 
       if (rank === 0) {
           console.log("Email ID not found.");
       } else {
           console.log(`Rank of ${emailId} based on score: ${rank}`);
-          return rank;
+          return `Rank of ${emailId} based on score: ${rank}`;
       }
   } catch (error) {
       console.error("Error:", error);

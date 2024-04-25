@@ -20,7 +20,7 @@ const runConversation = async (input) => {
   const tools = tool;
 
   const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0125",
+    model: "gpt-3.5-turbo-1106",
     messages: messages,
     tools: tools,
     tool_choice: "auto",
@@ -32,8 +32,9 @@ const runConversation = async (input) => {
 
   const toolCalls = responseMessage.tool_calls;
   // console.log("logging toolcalls", toolCalls);
-  
+  console.log(toolCalls);
   if (responseMessage.tool_calls) {
+
     messages.push(responseMessage);
     for (const toolCall of toolCalls) {
       const functionName = toolCall.function.name;
@@ -53,7 +54,7 @@ const runConversation = async (input) => {
     }
     // console.log("messages before secondResponse:", messages);
     const secondResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-3.5-turbo-1106",
       messages: messages,
     });
 
@@ -61,10 +62,11 @@ const runConversation = async (input) => {
     if(secondResponse){
       console.log("Ai has returned second response");
       return secondResponse.choices;
+      
     }
     
   }
-  console.log("Ai has returned firt response");
+  console.log("Ai has returned first response");
   return FirstResponse.choices;
 };
 
