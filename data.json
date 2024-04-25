@@ -1,0 +1,26 @@
+[
+  {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "technicalSkills": "Node.js, JavaScript",
+    "score": "90"
+  },
+  {
+    "name": "Alice Smith",
+    "email": "alice@example.com",
+    "technicalSkills": "Python, Django",
+    "score": "85"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bob@example.com",
+    "technicalSkills": "Java, Spring",
+    "score": "92"
+  },
+  {
+    "name": "Emma Brown",
+    "email": "emma@example.com",
+    "technicalSkills": "React, JavaScript",
+    "score": "88"
+  }
+]

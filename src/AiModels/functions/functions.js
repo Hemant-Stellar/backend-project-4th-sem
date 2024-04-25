@@ -1,9 +1,6 @@
-// backend API or an external API
-import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
-const mainBackend = process.env.MAINBACKEND;
-
+const filePath = 'data.json';
+import { error } from 'console';
+import { readFile, writeFile } from 'fs/promises';
 export const getCurrentWeather = (functionArgs)=> {
   console.log("getWeather has been called");
   const location = functionArgs.location;
@@ -20,19 +17,83 @@ export const getCurrentWeather = (functionArgs)=> {
     }
   }
 
-  export const getAllVacancies = async () => {
+ export const WriteJson = async (object) => {
     try {
-      // Make a GET request to the specified URL
+        // Read the existing JSON data from the file
+        let data = await readFile(filePath, 'utf8');
+        let jsonData = JSON.parse(data);
 
-      console.log(`this is ${mainBackend} url`);
-      const response = await axios.get(`${mainBackend}api/vacancy`);
-      console.log(response.data);
-      return JSON.stringify(response.data);
+        // Check if an object with the same email already exists
+        const existingIndex = jsonData.findIndex(item => item.email === object.email);
 
+        if (existingIndex !== -1) {
+            // If an object with the same email exists, overwrite it
+            jsonData[existingIndex] = object;
+        } else {
+            // If the email is unique, add the object to the array
+            jsonData.push(object);
+        }
+
+        // Convert the updated JSON data back to a string
+        const updatedJsonData = JSON.stringify(jsonData, null, 2);
+
+        // Write the updated JSON data back to the file
+        await writeFile(filePath, updatedJsonData, 'utf8');
+        console.log("Object added successfully to", filePath);
     } catch (error) {
-      // Handle any errors that occurred during the request
-      
-      console.error('Error while sending GET request:', error);
-      throw new Error('Failed to send GET request');
+        console.error("Error:", error);
     }
+}
+
+export const getRankByEmailId = async (functionArgs) =>{
+  if(functionArgs.email){
+  const emailId = functionArgs.email;
+  
+  try {
+      // Read the existing JSON data from the file
+      let data = await readFile(filePath, 'utf8');
+      let jsonData = JSON.parse(data);
+
+      // Sort the JSON data based on the score
+      jsonData.sort((a, b) => b.score - a.score);
+
+      // Find the index of the specified email ID
+      const rank = jsonData.findIndex(item => item.email === emailId) + 1;
+
+      if (rank === 0) {
+          console.log("Email ID not found.");
+      } else {
+          console.log(`Rank of ${emailId} based on score: ${rank}`);
+          return rank;
+      }
+  } catch (error) {
+      console.error("Error:", error);
+  }
+}
+  return `emailId argument is not passed correctly`;
+}
+
+export const getUsersInRange = async (functionArgs)=> {
+  
+    const startRank = functionArgs.startRank;
+    const endRank = functionArgs.endRank
+  try {
+      // Read the existing JSON data from the file
+      let data = await readFile(filePath, 'utf8');
+      let jsonData = JSON.parse(data);
+
+      // Sort the JSON data based on the score in descending order
+      jsonData.sort((a, b) => b.score - a.score);
+
+      // Get the users within the specified range of ranks
+      const usersInRange = jsonData.slice(startRank - 1, endRank);
+
+      // Log the users within the specified range
+      console.log("Users within the specified range:");
+      console.log(usersInRange);
+      return usersInRange;
+  } catch (error) {
+      console.error("Error:", error);
+      return `there was some issue while searching for user`;
   };
+}

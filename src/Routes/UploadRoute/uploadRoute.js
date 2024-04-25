@@ -1,9 +1,11 @@
 import express from 'express';
-import files from "../../Handlers/filesHelper/filesHelper.js"
-const router = express.Router();
-import { UploadController } from '../../Controllers/index.js';
+import {helper} from "../../Handlers/index.js"
+import { Controller } from '../../Controllers/index.js';
 
+const router = express.Router();
 // Create Note
-router.post('/',files.docUpload.single('doc'),UploadController );
+router.post('/',helper.files.docUpload.single('doc'),Controller.DocReview);
+router.post('/review',Controller.DocReview);
+
 
 export default router;

@@ -2,7 +2,10 @@ import express from "express";
 import cors from "cors";
 import APIRoutes from "./src/Routes/index.js";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+dotenv.config();
 
+const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

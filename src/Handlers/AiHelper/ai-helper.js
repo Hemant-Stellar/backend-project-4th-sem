@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
 
-import { model } from "../../AiModels/availableFunctions";
+import  {model}  from "../../AiModels/index.js";
 
 const { tool, availableFunctions } = model;
 
@@ -14,6 +14,7 @@ const runConversation = async (input) => {
   console.log("run LLM called ");
 
   const messages = [
+    {role:"system",content:process.env.CONTENT},
     { role: "user", content: input },
   ];
   const tools = tool;
